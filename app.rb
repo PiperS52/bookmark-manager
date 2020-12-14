@@ -1,4 +1,6 @@
-require 'sinatra/base'
+require 'sinatra/base'  
+
+require './lib/bookmarks'
 
 class App < Sinatra::Base
 
@@ -7,6 +9,9 @@ class App < Sinatra::Base
   end 
 
   get '/bookmarks' do
-    "Hello World"
+    @bookmarks = Bookmarks.new  
+    @bookmarks.show_list
+
+    erb :bookmarks
   end 
 end
