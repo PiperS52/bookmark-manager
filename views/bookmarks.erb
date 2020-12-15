@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
     <body>
-        <%= @bookmarks.show_list %>
+        <% @bookmarks.each do |item| %> 
+        <li><%= item %></li> 
+        <% end %>
     </body>
 </html>
