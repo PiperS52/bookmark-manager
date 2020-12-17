@@ -7,6 +7,7 @@ describe Bookmark do
       bookmark = Bookmark.create(url: 'http://www.testbookmark.com', title: 'Test Bookmark')
       persisted_data = persisted_data(id: bookmark.id)
 
+
       expect(bookmark).to be_a Bookmark
       expect(bookmark.id).to eq persisted_data['id']
       expect(bookmark.title).to eq 'Test Bookmark'
@@ -18,9 +19,10 @@ describe Bookmark do
     it 'deletes a bookmark' do
       bookmark = Bookmark.create(url: 'http://www.testbookmark.com', title: 'Test Bookmark')
       # persisted_data = persisted_data(id: bookmark.id)
-      bookmark.delete(id: bookmark.id)
+      Bookmark.delete(id: bookmark.id)
 
-      expect { bookmark.all }.to change{ bookmarks.all.length}.by(0)
+      # expect { bookmark.all }.to change{ bookmarks.all.length}.by(0)
+      expect(Bookmark.all.length).to eq 0
     end
   end
 end
