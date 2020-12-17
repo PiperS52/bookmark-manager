@@ -1,5 +1,5 @@
 require 'database_helpers'
-require 'bookmarks'
+require './lib/bookmarks'
 
 describe Bookmarks do
   describe '.create' do
