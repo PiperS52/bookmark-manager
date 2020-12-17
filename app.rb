@@ -10,7 +10,7 @@ class App < Sinatra::Base
   end
 
   get '/bookmarks' do
-    @bookmarks = Bookmarks.all
+    @bookmarks = Bookmark.all
 
     erb :bookmarks
   end
@@ -20,14 +20,13 @@ class App < Sinatra::Base
   end
 
   post '/bookmarks' do
-    Bookmarks.create(url: params[:url], title: params[:title])
+    Bookmark.create(url: params[:url], title: params[:title])
     redirect '/bookmarks'
   end
 
   delete '/bookmarks/:id' do
     p params
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-    connection.exec("DELETE FROM bookmarks WHERE id = #{params['id']}")
+    Bookmark.delete(id: params[:id])
     redirect '/bookmarks'
   end
 
