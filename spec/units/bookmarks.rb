@@ -1,11 +1,13 @@
-require './lib/bookmarks'
+require 'database_helpers'
 
-describe '.all' do
-  it 'returns a list of bookmarks' do
-    bookmarks = Bookmark.all
+describe '.create' do
+  it 'creates a new bookmark' do
+    bookmark = Bookmark.create(url: 'http://www.testbookmark.com', title: 'Test Bookmark')
+    persisted_data = persisted_data(id: bookmark.id)
 
-    expect(bookmarks).to include "http://makers.tech"
-    expect(bookmarks).to include "http://www.destroyallsoftware.com"
-    expect(bookmarks).to include "http://www.google.com"
+    expect(bookmark).to be_a Bookmark
+    expect(bookmark.id).to eq persisted_data['id']
+    expect(bookmark.title).to eq 'Test Bookmark'
+    expect(bookmark.url).to eq 'http://www.testbookmark.com'
   end
 end
