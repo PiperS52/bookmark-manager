@@ -1,0 +1,72 @@
+body {
+  background-color: rgba(0,181,201,1);
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border-radius: 10px;
+  font-family: fantasy;
+}
+
+.main {
+  font-family: fantasy;
+  align-items: center;
+  align-content: center;
+  font-size: x-large;
+}
+
+/* .fas fa-user {
+  position: absolute;
+  right: 175px;
+  top: 50px;
+} */
+
+p {
+  color: black;
+  font-size: xx-large;
+  justify-content: center;
+  align-self: center;
+}
+
+h1 {
+  color: black;
+  padding: 25px 30px 75px 100px;
+  font-size: medium;
+  align-items: left;
+}
+
+h2 {
+  color: black;
+  padding: 25px 30px 75px 100px;
+  font-size: medium
+}
+
+.bookmark {
+  outline-style: groove;
+  outline-color: white;
+  outline-width: 15px 10px 4px 30px;
+  border-style: double;
+  border-radius: 5px;
+}
+
+.sign-out {
+  position: absolute;
+  right: 175px;
+  top: 50px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: lighter;
+  margin: auto;
+}
+
+
+
+
+/* div {
+  padding: 25px 50px 75px;
+} */

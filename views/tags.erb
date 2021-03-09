@@ -1,0 +1,15 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css"
+</head>
+
+<ul>
+  <% @tag.bookmarks.each do |bookmark| %>
+  <li>
+    <a href="<%= bookmark.url %>" target="_blank">
+      <%= bookmark.title %>
+    </a>
+  </li>
+  <% end %>
+</ul>

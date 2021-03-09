@@ -3,24 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="http://kit.fontawesome.com/a24b83e000.js"></script>
 </head>
     <body>
+      <p> Bookmark Manager</p>
+      <% if @user %>
+      <h1>Welcome, <%= @user.email %></h1>
+      <form action="/sessions/destroy" method="post">
+        <input class="sign-out" type="submit" value="Sign out" />
+        <i class="fas fa-user"></i>
+      </form>
+      <% end %>
         <ul>
           <% @bookmarks.each do |bookmark| %>
             <li class="bookmark" id="bookmark-<%= bookmark.id %>">
               <a href="<%= bookmark.url %>" target="_blank">
                 <%= bookmark.title %>
+                <i class="fas fa-bookmark"></i>
               </a>
               <form action="/bookmarks/<%= bookmark.id %>" method="post">
                 <input type='hidden' name='_method' value='DELETE'/>
                 <input type="submit" value="Delete" />
-                </form>
-                <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
-                  <input type="submit" value="Edit" />
               </form>
-            </li>
-        <% end %>
-        </ul>
+              <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
+                <input type="submit" value="Edit" />
+              </form>
+              <form action="/bookmarks/<%= bookmark.id %>/comments/new" method="get">
+                <input type="submit" value="Add Comment" />
+              </form>
+              <form action="/bookmarks/<%= bookmark.id %>/tags/new" method="get">
+                <input type="submit" value="Add tag" />
+              </form>
+              <% if bookmark.comments.length > 0 %>
+                  <div>
+                    <h2> Comments </h2>
+                      <ul>
+                        <% bookmark.comments.each do |comment| %>
+                        <li><%= comment.text %></li>
+                        <% end %>
+                      </ul>
+                  </div>
+              <% end %>
+              <% if bookmark.tags.length > 0 %>
+                <div>
+                  <h2> Tags </h2>
+                    <ul>
+                      <% bookmark.tags.each do |tag| %>
+                        <li>
+                          <a href="/tags/<%= tag.id %>/bookmarks">
+                            <%= tag.content %>
+                          </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <% end %>
+                </li>
+                <% end %>
+                <p>
+          <%= flash[:notice] %>
+        </p>
     </body>
 </html>
