@@ -8,14 +8,20 @@
 </head>
     <body>
       <p> Bookmark Manager</p>
-      <% if @user %>
-      <h1>Welcome, <%= @user.email %></h1>
-      <form action="/sessions/destroy" method="post">
-        <input class="sign-out" type="submit" value="Sign out" />
-        <i class="fas fa-user"></i>
-      </form>
-      <% end %>
-        <ul>
+        <% if @user %>
+          <h1>Welcome, <%= @user.email %></h1>
+           <i class="fas fa-user"></i>
+          <form action="/sessions/destroy" method="post">
+            <input class="sign-out" type="submit" value="Sign out" />
+            <%# <i class="fas fa-user"></i> %>
+          </form>
+
+          <form action="/bookmarks/new" method="get">
+            <input class="create-bookmark" type="submit" value="Create new bookmark" />
+           
+          </form>
+        <% end %>
+      <ul>
           <% @bookmarks.each do |bookmark| %>
             <li class="bookmark" id="bookmark-<%= bookmark.id %>">
               <a href="<%= bookmark.url %>" target="_blank">
@@ -35,6 +41,7 @@
               <form action="/bookmarks/<%= bookmark.id %>/tags/new" method="get">
                 <input type="submit" value="Add tag" />
               </form>
+            
               <% if bookmark.comments.length > 0 %>
                   <div>
                     <h2> Comments </h2>
@@ -45,6 +52,7 @@
                       </ul>
                   </div>
               <% end %>
+           
               <% if bookmark.tags.length > 0 %>
                 <div>
                   <h2> Tags </h2>
@@ -55,13 +63,15 @@
                             <%= tag.content %>
                           </a>
                         </li>
-                        <% end %>
+                      <% end %>
                     </ul>
                 </div>
-                <% end %>
-                </li>
-                <% end %>
-                <p>
+              <% end %>
+            </li>
+            
+          <% end %>
+          </ul>
+        <p>
           <%= flash[:notice] %>
         </p>
     </body>
